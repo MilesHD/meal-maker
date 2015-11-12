@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
-    <title>SideMenu News Master Detail</title>
+    <title>Meal Maker</title>
 
     <link href="http://code.ionicframework.com/1.0.0-beta.10/css/ionic.min.css" rel="stylesheet">
     <script src="http://code.ionicframework.com/1.0.0-beta.10/js/ionic.bundle.min.js"></script>
@@ -12,53 +12,64 @@
 
 <body>
 
+<!--Side Menu acts as container for application-->
 <ion-side-menus>
     <ion-side-menu-content>
 
+        <!--Top Navigation Bar-->
         <ion-nav-bar class="bar-positive">
             <ion-nav-back-button class="button-icon ion-ios7-arrow-back"></ion-nav-back-button>
         </ion-nav-bar>
+
+        <!--Dynamic View-->
         <ion-nav-view></ion-nav-view>
 
     </ion-side-menu-content>
 
+    <!--Sidebar Menu-->
     <ion-side-menu side="left">
         <ion-header-bar class="bar-dark">
             <h1 class="title">Menu</h1>
         </ion-header-bar>
         <ion-content>
             <ion-list>
-                <ion-item nav-clear menu-close ng-href=#/news class="item">News</ion-item>
+                <ion-item nav-clear menu-close ng-href=#/meals class="item">Meals</ion-item>
             </ion-list>
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>
 
-<script id="news.html" type="text/ng-template">
+<!--Templates-->
+<script id="meals.html" type="text/ng-template">
     <ion-nav-view></ion-nav-view>
 </script>
 
-<script id="news.list.html" type="text/ng-template">
-    <ion-view title="News">
+<script id="meals.list.html" type="text/ng-template">
+    <ion-view title="Meals">
         <ion-nav-buttons side="left">
             <button menu-toggle="left" class="button button-icon icon ion-navicon">
             </button>
         </ion-nav-buttons>
         <ion-content>
-            <div class="list" ng-if=news.length>
-                <a class="item" ng-repeat="n in news" ng-click="onSelectNews(n)">{{n.name}} </a>
+            <div class="list" ng-if=meals.length>
+                <a class="item" ng-repeat="n in meals" ng-click="onSelectMeal(n)">{{n.name}} </a>
             </div>
         </ion-content>
     </ion-view>
 </script>
 
-<script id="news.detail.html" type="text/ng-template">
-    <!--<ion-view title="News {{news.id}}">-->
-    <ion-view title="News">
+<script id="meals.detail.html" type="text/ng-template">
+    <!--<ion-view title="{{meals.id}}">-->
+    <ion-view title="{{meal.name}}">
         <ion-content>
+            <h2>Ingredients</h2>
             <div class="card">
                 <div class="item">
-                    <pre>{{news|json}}</pre>
+                    <ul>
+                        <li ng-repeat="i in meal.ingredients">
+                            {{i.name}} - {{i.quantity}}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ion-content>
