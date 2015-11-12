@@ -6,6 +6,8 @@
     <title>Meal Maker</title>
 
     <link href="http://code.ionicframework.com/1.0.0-beta.10/css/ionic.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
     <script src="http://code.ionicframework.com/1.0.0-beta.10/js/ionic.bundle.min.js"></script>
     <script src="app.js"></script>
 </head>
@@ -62,14 +64,20 @@
     <!--<ion-view title="{{meals.id}}">-->
     <ion-view title="{{meal.name}}">
         <ion-content>
-            <h2>Ingredients</h2>
             <div class="card">
-                <div class="item">
-                    <ul>
-                        <li ng-repeat="i in meal.ingredients">
-                            {{i.name}} - {{i.quantity}}
-                        </li>
-                    </ul>
+                <div class="item item-divider bar-positive">
+                    Ingredients
+                </div>
+                <div class="item" ng-repeat="i in meal.ingredients">
+                    {{i.name}} - {{i.quantity}}
+                </div>
+            </div>
+            <div class="card">
+                <div class="item item-divider bar-positive">
+                    Preparation
+                </div>
+                <div class="item" ng-repeat="i in meal.preparation">
+                    {{i.step}}. {{i.instruction}}
                 </div>
             </div>
         </ion-content>
